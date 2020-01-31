@@ -9,8 +9,8 @@ import (
 	"unsafe"
 )
 
-func X16RV2(data []byte) []byte {
-	output := make([]byte, 32)
-	C.x16rv2_hash((*C.char)(unsafe.Pointer(&data[0])), (*C.char)(unsafe.Pointer(&output[0])))
-	return output
+func HashX16RV2(b []byte) [32]byte {
+	var blockHash [32]byte
+	C.x16rv2_hash((*C.char)(unsafe.Pointer(&b[0])), (*C.char)(unsafe.Pointer(&blockHash[0])))
+	return blockHash
 }
